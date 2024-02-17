@@ -1,15 +1,15 @@
 ---
-- name: Git clone du dépôt VPCS dans /tmp
+- name: Git clone VPCS to /tmp
   git:
     repo: https://github.com/GNS3/vpcs.git
     dest: /tmp/vpcs
 
-- name: Exécuter mk.sh
+- name: run mk.sh
   shell: /bin/sh mk.sh amd64
   args:
     chdir: /tmp/vpcs/src
 
-- name: Installer vpcs
+- name: Install vpcs
   copy:
     src: /tmp/vpcs/src/vpcs
     dest: /usr/local/bin/vpcs

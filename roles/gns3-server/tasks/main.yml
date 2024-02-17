@@ -1,20 +1,20 @@
 ---
-- name: Cloner le dépôt gns3-server dans /opt
+- name: Clone gns3-server in /opt
   git:
     repo: https://github.com/GNS3/gns3-server.git
     dest: /opt/gns3-server
     force: yes
 
-- name: Installer les dépendances Python
+- name: Install python dependecies
   pip:
     requirements: /opt/gns3-server/requirements.txt
 
-- name: Installer le package gns3-server
+- name: Install gns3-server
   pip:
     name: /opt/gns3-server/.
   tags: install-gns3
 
-- name: Copier le fichier de service GNS3
+- name: Copy gns3 server systemd service
   copy:
     src: files/gns3.service
     dest: /usr/lib/systemd/system/gns3.service
@@ -23,10 +23,10 @@
     mode: 0644
   tags: test   
 
-- name: Exécuter systemctl daemon-reload
+- name: Run systemctl daemon-reload
   command: systemctl daemon-reload
 
-- name: Démarrer le service gns3 server
+- name: Run gns3
   service:
     name: gns3 
     state: started

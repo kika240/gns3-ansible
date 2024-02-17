@@ -1,16 +1,16 @@
 ---
-- name: ajout du support de l'architecture i386
+- name: add i386 support for dpkg
   command: /usr/bin/dpkg --add-architecture i386
   when: ansible_distribution_file_variety == 'Debian'
   tags: add-x32-support
 
-- name: print si i386 a bien été installé
+- name: Check if i386 is setup on host for dpkg
   command: /usr/bin/dpkg --print-foreign-architectures
   register: command_output
   when: ansible_distribution_file_variety == 'Debian'
   tags: test-x32-support
 
-- name: Afficher la sortie de la commande
+- name: Print foreign architecture for debug 
   debug:
     var: command_output.stdout
   when: ansible_distribution_file_variety == 'Debian'

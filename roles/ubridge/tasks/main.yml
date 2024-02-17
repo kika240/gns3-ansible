@@ -1,35 +1,30 @@
 ---
-- name: Clone le dépôt Git ubridge dans /tmp
+- name: Clone ubridge git in /tmp
   git:
     repo: https://github.com/GNS3/ubridge.git
     dest: /tmp/ubridge
 
-- name: Se déplacer dans le répertoire ubridge
-  shell: cd /tmp/ubridge/
-  args:
-    chdir: /tmp/ubridge/
-
-- name: Exécuter make pour ubridge
+- name: run make for ubridge
   shell: make
   args:
     chdir: /tmp/ubridge/
 
-- name: Exécuter make install pour ubridge
+- name: Run make install for ubridge
   shell: make install
   args:
     chdir: /tmp/ubridge/
 
-- name: Changer les permissions de ubridge
+- name: Change permission for ubridge
   file:
     path: /usr/local/bin/ubridge
     mode: u+x
 
-- name: Copier ubridge vers /usr/local/bin
+- name: Copy ubridge to /usr/local/bin
   copy:
     remote_src: true
     src: /tmp/ubridge/ubridge
     dest: /usr/local/bin/ubridge
     mode: '0755'
 
-- name: Définir les capacités pour ubridge
+- name: setcap ubridge
   shell: setcap cap_net_admin,cap_net_raw=ep /usr/local/bin/ubridge
