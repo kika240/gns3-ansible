@@ -1,0 +1,17 @@
+---
+- name: Git clone du dépôt VPCS dans /tmp
+  git:
+    repo: https://github.com/GNS3/vpcs.git
+    dest: /tmp/vpcs
+
+- name: Exécuter mk.sh
+  shell: /bin/sh mk.sh amd64
+  args:
+    chdir: /tmp/vpcs/src
+
+- name: Installer vpcs
+  copy:
+    src: /tmp/vpcs/src/vpcs
+    dest: /usr/local/bin/vpcs
+    mode: '0755'
+    remote_src: true

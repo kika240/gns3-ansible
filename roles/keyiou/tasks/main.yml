@@ -1,0 +1,13 @@
+
+- name: Copier le script Python dans /tmp
+  copy:
+    src: files/CiscoIOUKeygen.py
+    dest: /tmp/CiscoIOUKeygen.py
+
+- name: Exécuter le script Python et enregistrer la sortie
+  command: python3 /tmp/CiscoIOUKeygen.py
+  register: script_output
+
+- name: Afficher la sortie dans la console Ansible
+  debug:
+    var: script_output.stdout

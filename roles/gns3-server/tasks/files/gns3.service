@@ -1,0 +1,11 @@
+[Unit]
+Description=GNS3 server
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+User=root
+ExecStart=/usr/bin/python3 /opt/gns3-server/gns3server/main.py --log /opt/gns3-server/gns3.log --pid /opt/gns3-server/gns3.pid 
+PIDFile=/opt/gns3-server/gns3.pid
+[Install]
+WantedBy=multi-user.target

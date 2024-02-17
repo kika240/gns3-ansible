@@ -1,0 +1,13 @@
+- name: Installation de gns3
+  hosts: test
+  become: true
+  roles: 
+    - dpkg-architecture-i386
+    - apt
+    - docker
+    - libcrypto
+    - ubridge
+    - dynamips
+    - vpcs
+    - gns3-server
+    - keyiou

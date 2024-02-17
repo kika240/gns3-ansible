@@ -1,0 +1,30 @@
+- name: Ajout de la clé GPG officielle de Docker
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+    tags: add-docker-gpg-ubuntu
+
+- name: Ajout du référentiel Docker aux sources apt
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+    state: present
+    tags: add-docker-repository-ubuntu
+
+
+- name: Installation de docker
+  apt: 
+    name: 
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-buildx-plugin
+    - docker-compose-plugin
+    update_cache: yes 
+    tags: install-docker-package-apt 
+
+- name: Vérification si le service Docker est en cours d'exécution
+  service:
+    name: docker
+    state: started
+    enabled: yes
+    tags: test-docker-service

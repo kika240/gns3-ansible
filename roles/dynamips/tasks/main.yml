@@ -1,0 +1,20 @@
+---
+- name: Git clonedynamips
+  git:
+    repo: https://github.com/GNS3/dynamips.git
+    dest: /tmp/dynamips
+
+- name: Créer le répertoire build
+  file:
+    path: /tmp/dynamips/build
+    state: directory
+
+- name: Exécuter cmake
+  command: cmake ..
+  args:
+    chdir: /tmp/dynamips/build
+
+- name: Exécuter make install 
+  shell: make install
+  args:
+    chdir: /tmp/dynamips/build

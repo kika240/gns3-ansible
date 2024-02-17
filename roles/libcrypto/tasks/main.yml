@@ -1,0 +1,9 @@
+---
+- name: Vérification de la présence du fichier libcrypto.so.4
+  stat:
+    path: "/usr/lib/i386-linux-gnu/libcrypto.so.4"
+  register: libcrypto_file
+
+- name: Ajout du support de libcrypto.so.4 si le fichier n'existe pas
+  command: ln -s /usr/lib/i386-linux-gnu/libcrypto.so.1.1 /usr/lib/i386-linux-gnu/libcrypto.so.4
+  when: libcrypto_file.stat.exists == False

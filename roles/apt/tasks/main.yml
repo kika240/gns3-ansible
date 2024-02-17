@@ -1,0 +1,31 @@
+---
+- name: apt update and upgrade
+  apt:
+    update_cache: yes
+    upgrade: yes
+  when: ansible_distribution_file_variety == 'Debian'
+  tags: update-apt
+
+- name: apt install package dependecies for gns3server
+  apt:
+    name: 
+    - git
+    - build-essential 
+    - python3-setuptools
+    - python3-pip
+    - ca-certificates
+    - curl
+    - cmake
+    - qemu 
+    - mtools
+    - libvirt-daemon-system
+    - libgcc-s1:i386
+    - libpcap-dev
+    - libelf-dev
+    - libgcc-s1:i386
+    - libssl1.1:i386
+    - qemu-system
+    - qemu-kvm
+    state: present
+  when: ansible_distribution_file_variety == 'Debian'
+  tags: dependencies-apt
