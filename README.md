@@ -13,7 +13,3 @@ I was in school learning Ansible, and we was working about how to use Ansible to
 This is my first project to github and Ansible, if my code is not good, feel free to do a pull request :D
 
 
-# Contributor 
-
-Thanks to craigarms for the lesson on Ansible to give me the idea
-You can find it here: https://www.linkedin.com/in/craig-armstrong-6b733b49/
