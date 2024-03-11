@@ -1,4 +1,4 @@
-- name: Installation de gns3
+- name: gns3 setup
   hosts: test
   become: true
   roles: 

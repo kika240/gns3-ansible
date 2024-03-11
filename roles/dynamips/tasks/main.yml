@@ -9,12 +9,12 @@
     path: /tmp/dynamips/build
     state: directory
 
-- name: Execute cmake
+- name: Run cmake for dynamips
   command: cmake ..
   args:
     chdir: /tmp/dynamips/build
 
-- name: Execute make install 
+- name: Run make install for dynamips
   shell: make install
   args:
     chdir: /tmp/dynamips/build
